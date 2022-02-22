@@ -1,0 +1,49 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+
+@include media-breakpoint-down(md) {
+  .bg{
+    background-color: #00000000 !important;
+  }
+}
+
+
+@include media-breakpoint-up(md) {
+  .bg{
+    padding: 2rem;
+  }
+}
+@include media-breakpoint-up(md) {
+  .addon{
+    margin: 0 5rem;
+    background: black;
+  }
+
+  .main_form{
+    max-width: 864px;
+    height: 100%;
+  }
+}
+
+.insideContainer{
+  margin-bottom: 5rem;
+}
+
+.container {
+  //height: 100vh;
+}
+
+.description{
+
+}
+
+.card_documents{
+
+  background-color: #FFFFFF;
+  border: 1px solid #DADCDE;
+  box-sizing: border-box;
+  border-radius: 3px;
+}

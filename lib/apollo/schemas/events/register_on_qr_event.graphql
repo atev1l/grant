@@ -1,0 +1,18 @@
+mutation REGISTER_ON_QR_EVENT (
+    $eventId: Uuid!
+    $token: String!
+    $pincode: String!
+){
+    requestMarkArrived(
+        input: {
+            eventId: $eventId
+            token: $token,
+            pincode: $pincode
+        }) {
+        value
+        errors{
+            code
+            message
+        }
+    }
+}

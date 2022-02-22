@@ -1,0 +1,47 @@
+query GET_MY_EVENTS (
+    $cursor: String
+    $sort: SortEnumType
+    $search: String
+    $lte: DateTime
+    $gte: DateTime
+) {
+    events(
+        where: {
+            scheduledTo: {
+                gte: $gte,
+                lte: $lte
+            }
+            or: [{
+                title: {
+                    contains: $search
+                }
+            }{
+                description: {
+                    contains: $search
+                }
+            }]
+        }
+        isMy: true
+        first: 9
+        after: $cursor
+        order: [{
+            scheduledTo: $sort
+        }]
+    ) {
+        edges {
+            node {
+                id
+                title
+                description
+                requestStatus
+                coverImage
+                scheduledTo
+                estimateTo
+            }
+        }
+        pageInfo {
+            hasNextPage
+            endCursor
+        }
+    }
+}

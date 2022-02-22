@@ -1,0 +1,49 @@
+
+# lte -- less then date
+# gte -- greater then date
+
+query GET_EVENTS (
+    $cursor: String
+    $sort: SortEnumType
+    $search: String
+    $lte: DateTime
+    $gte: DateTime
+){
+    events(
+        after: $cursor
+        first: 9
+        where: {
+            scheduledTo: {
+                gte: $gte
+                lte: $lte
+            }
+            or: [{
+                title: {
+                    contains: $search
+                }
+            }{
+                description: {
+                    contains: $search
+                }
+            }]
+        }
+        order: [{
+            scheduledTo: $sort
+        }]
+    ) {
+        edges {
+            node {
+                id
+                title
+                description
+                coverImage
+                scheduledTo
+                estimateTo
+            }
+        }
+        pageInfo {
+            endCursor
+            hasNextPage
+        }
+    }
+}

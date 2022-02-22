@@ -1,0 +1,10 @@
+@import "../../styles/vars";
+
+.input {
+  outline: none;
+  border: none;
+  background-color: #00000000;
+  &:focus{
+    caret-color: map-get($custom-colors, orng);
+  }
+}

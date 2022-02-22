@@ -1,0 +1,10 @@
+mutation CONFIRM_ACCOUNT(
+    $token: String!
+) {
+    confirmAccount(input: {token: $token}) {
+        value
+        errors {
+            message
+        }
+    }
+}

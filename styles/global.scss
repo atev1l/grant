@@ -1,0 +1,68 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import '../node_modules/react-dates/lib/css/_datepicker.css';
+@import "datepicker";
+@import "vars";
+//@import "../node_modules/antd/dist/antd.css";
+
+$form-check-input-focus-box-shadow: none;
+$form-check-input-checked-bg-color: map-get($custom-colors, 'orng');
+$form-check-input-checked-border-color: map-get($custom-colors, 'orng');
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+$theme-colors: map-merge($theme-colors, $colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-colors: map-merge($utilities-colors, $theme-colors-rgb);
+$utilities-text-colors: map-loop($utilities-colors, rgba-css-var, "$key", "text");
+$utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
+$grid-breakpoints: map_merge($custom-breakpoints, $grid-breakpoints);
+$container-max-widths: map_merge($custom-breakpoints, $container-max-widths);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+* {
+  font-family: 'PXR', serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+body{
+  background-color: #F6F6F6;
+  height: 100%;
+}
+
+.mc{
+  margin-bottom: 15rem;
+}
+
+.red_star::after {
+  content: "*";
+  color: red;
+  margin-left:2px
+}
+
+.off-z-index {
+  z-index: 1400;
+}
+
+
+*::-webkit-scrollbar {
+  padding: 1px;
+  width: 6px;
+  height: 6px; /* ширина scrollbar */
+}
+*::-webkit-scrollbar-track {
+  padding: 1px;
+  background: transparent;        /* цвет дорожки */
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #B4B6B8;    /* цвет плашки */
+  border-radius: 20px;       /* закругления плашки */
+  border: 3px solid transparent;  /* padding вокруг плашки */
+  margin: 1px;
+}
+

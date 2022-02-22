@@ -1,0 +1,18 @@
+query GET_USER_BY_USER_ID($id: Uuid){
+    usersInfo(
+        where:{
+            id:{
+                eq: $id
+            }
+        }
+    ){
+        edges{
+            node{
+                profile{
+                    firstName
+                    lastName
+                }
+            }
+        }
+    }
+}

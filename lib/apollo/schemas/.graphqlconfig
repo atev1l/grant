@@ -1,0 +1,16 @@
+{
+  "name": "Untitled GraphQL Schema",
+  "schemaPath": "schema.gql",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "https://conva.techno-team.ru/gql/",
+        "headers": {
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQxMzVjMWZhLTAyMGMtNGZkNi1hMzA4LWVhZTY5NDFmMzI5MCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN5c3RlbUB0ZWNobm8tdGVhbS5ydSIsIm5iZiI6MTYzOTU3OTg4MSwiZXhwIjoxNjM5NjY2MjgxLCJpc3MiOiJDb252YVNlcnZlciIsImF1ZCI6IkNvbnZhQ2xpZW50In0.3Qjg005gEEc5FiK_V5GTq07zGmDR4ePeosBfNUJlldc",
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": false
+      }
+    }
+  }
+}

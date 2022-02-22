@@ -1,0 +1,38 @@
+{
+  "name": "Temp",
+  "short_name": "Temp",
+  "start_url": "/",
+  "display": "standalone",
+  "scope": "/",
+  "splash_pages": null,
+  "orientation": "portrait",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "icons": [
+    {
+      "src": "/logo-32.png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/logo-64.png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "/logo-128.png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/logo-256.png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/logo-512.png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/logo.svg",
+      "sizes": "510x510",
+      "purpose": "any maskable"
+    }
+  ]
+}

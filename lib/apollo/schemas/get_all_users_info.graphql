@@ -1,0 +1,48 @@
+query GET_ALL_USERS_INFO(
+    $cursor: String
+    $search: String = ""
+) {
+    usersInfo(
+        first: 15
+        after: $cursor
+        where:{
+            profile:{
+                and:[{
+                    firstName:{
+                        contains: $search
+                    }
+                }
+                    {
+                        lastName:{
+                            contains: $search
+                        }
+                    }
+                    {
+                        patronymic:{
+                            contains: $search
+                        }
+                    }]
+
+            }
+        }
+    ){
+        edges {
+            node {
+                id
+                email
+                profile{
+                    firstName
+                    lastName
+                    patronymic
+                    city
+                    organization
+                    phone
+                }
+            }
+        }
+        pageInfo {
+            endCursor
+            hasNextPage
+        }
+    }
+}

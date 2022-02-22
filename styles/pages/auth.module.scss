@@ -1,0 +1,26 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+
+@include media-breakpoint-down(md) {
+  .title_block{
+    width: 100% !important;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .title_block{
+    width: 28% !important;
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .title_block2{
+    width: 50% !important;
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+}

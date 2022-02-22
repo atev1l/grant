@@ -1,0 +1,23 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+.m_back {
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+@include media-breakpoint-down(md) {
+  .m_gen {
+    z-index: 100;
+    width: 100% !important;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .m_gen {
+    z-index: 100;
+    width: 33%;
+  }
+}

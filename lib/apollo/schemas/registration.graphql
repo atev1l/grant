@@ -1,0 +1,38 @@
+mutation REGISTRATION (
+    $email: String!,
+    $pass: String!,
+    $city: String,
+    $firstName: String!,
+    $lastName: String!,
+    $organization: String,
+    $patronymic: String,
+    $phone: String
+    $userId: Uuid!
+    $memberType: MemberType!
+    $memberTypeCustom: String
+) {
+    createAccount(
+        input: {
+            email: $email
+            password: $pass
+            profileLight: {
+                memberType: $memberType
+                memberTypeCustom: $memberTypeCustom
+                userId: $userId
+                city: $city
+                firstName: $firstName
+                lastName: $lastName
+                organization: $organization
+                patronymic: $patronymic
+                phone: $phone
+
+            }
+        }
+    ) {
+        value
+        errors {
+            message
+            code
+        }
+    }
+}

@@ -1,0 +1,8 @@
+query STATISTIC(
+    $eventId: Uuid!
+){
+    statistics(
+        eventId: $eventId
+        statisticMode: [NUMBER_OF_PARTICIPANTS, PARTICIPANTS_FROM_PSU, CONFERENCES_WITH_INTERNATIONAL_PARTICIPATION]
+    )
+}

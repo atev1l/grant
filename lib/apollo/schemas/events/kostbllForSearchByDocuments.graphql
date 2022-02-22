@@ -1,0 +1,26 @@
+query KOSTblL_FOR_SEARCH_BY_DOCUMENTS(
+    $eventId: Uuid!
+    $talkTitle: String
+){
+    requests(
+        eventId: $eventId
+        searchByDocs: $talkTitle
+    ){
+        nodes{
+            id
+            talkTitle
+            profileLight{
+                firstName
+                lastName
+                organization
+            }
+            documents{
+                id
+                name
+                relativePath
+                extension
+                sizeString
+            }
+        }
+    }
+}

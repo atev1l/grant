@@ -1,0 +1,13 @@
+@import "../../styles/vars";
+@import "../Typography/styles.module";
+
+.input {
+  outline: none;
+  border: none;
+  background-color: #00000000;
+  &:focus{
+    outline: none;
+    border: none;
+    caret-color: map-get($custom-colors, orng);
+  }
+}

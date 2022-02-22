@@ -1,0 +1,29 @@
+query GET_REQUEST_BY_EVENT_ID(
+    $eventId: Uuid!
+    $id: Uuid
+){
+    requests(
+        eventId: $eventId
+        where: {
+            id:{
+                eq: $id
+            }
+        }
+    ){
+        nodes{
+            id
+            talkTitle
+            profileLight{
+                firstName
+                lastName
+            }
+            type
+            coAuthors
+            documents{
+                id
+                name
+                relativePath
+            }
+        }
+    }
+}

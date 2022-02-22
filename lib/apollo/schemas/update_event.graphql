@@ -1,0 +1,39 @@
+mutation UPDATE_EVENT(
+    $eventId: Uuid!,
+    $title: String,
+    $description: String,
+    $status: EventStatus,
+    $organizers: [Uuid!]!
+    $contactPerson: Uuid
+    $newOrganizers: [RequestUserRegistrationInput!]! = []
+    $documents: [Uuid!]! = []
+    $pincode: Int,
+    $coverImageId: Uuid,
+    $scheduledTo: DateTime,
+    $estimateTo: DateTime,
+){
+    updateEvent(
+        input:{
+            eventId: $eventId
+            title: $title
+            description: $description
+            status: $status
+            organizers: $organizers
+            contactPerson: $contactPerson
+            pincode: $pincode
+            newOrganizers: $newOrganizers
+            documents: $documents
+            coverImageId: $coverImageId
+            scheduledTo: $scheduledTo
+            estimateTo: $estimateTo
+
+        }
+    ){
+
+        value
+        errors{
+            code
+            message
+        }
+    }
+}

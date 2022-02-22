@@ -1,0 +1,17 @@
+query GET_REQUEST_COMMENT(
+    $requestId: Uuid!
+#    $eventId: Uuid!
+){
+    myRequests(
+#        eventId: $eventId
+        where: {id: {eq: $requestId}}
+    ) {
+        edges{
+            node {
+                id
+                type
+                comment
+            }
+        }
+    }
+}

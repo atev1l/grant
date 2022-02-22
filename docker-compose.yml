@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  app:
+    restart: always
+    container_name: front
+    volumes:
+    - ./.env:/app/.env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - ${EXPOSE_PORT}:3000
+
+networks:
+  default:
+    external:
+      name: orchestr

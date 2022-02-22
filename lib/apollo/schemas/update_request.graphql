@@ -1,0 +1,23 @@
+mutation UPDATE_REQUEST(
+    $requestId: Uuid!
+    $type: RequestType
+    $talkTitle: String
+    $documents: [Uuid!]!
+    $coAuthors: [Uuid!]!
+){
+    editRequest (
+        input: {
+            requestId: $requestId
+            type: $type
+            talkTitle: $talkTitle
+            documents: $documents
+            coAuthors: $coAuthors
+        }
+    ) {
+        value
+        errors {
+            code
+            message
+        }
+    }
+}

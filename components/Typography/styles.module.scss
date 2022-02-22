@@ -1,0 +1,90 @@
+@mixin text-typo($w, $s, $h) {
+  font-family: 'PX' + $w;
+  font-size: $s;
+  line-height: $h;
+}
+
+
+$types: (
+        t0: (
+                s: 20px,
+                h: 120%,
+                w: 'B'
+        ),
+        t1: (
+                s: 18px,
+                h: 120%,
+                w: 'B'
+        ),
+        t1sb: (
+                s: 18px,
+                h: 120%,
+                w: 'S'
+        ),
+        t2: (
+                s: 17px,
+                h: 135%,
+                w: 'B'
+        ),
+        p1sb: (
+                s: 16px,
+                h: 135%,
+                w: 'S'
+        ),
+        p1: (
+                s: 16px,
+                h: 135%,
+                w: 'R'
+        ),
+        p2sb: (
+                s: 15px,
+                h: 120%,
+                w: 'S'
+        ),
+        p2: (
+                s: 15px,
+                h: 120%,
+                w: 'R'
+        ),
+        p3: (
+                s: 14px,
+                h: 120%,
+                w: 'R'
+        ),
+        p3sb: (
+                s: 14px,
+                h: 120%,
+                w: 'S'
+        ),
+        p4: (
+                s: 14px,
+                h: 120%,
+                w: 'R'
+        ),
+        p4sb: (
+                s: 13px,
+                h: 100%,
+                w: 'S'
+        ),
+        p5sb: (
+                s: 14px,
+                h: 120%,
+                w: 'S'
+        ),
+        p5: (
+                s: 14px,
+                h: 120%,
+                w: 'R'
+        ),
+        p7sb: (
+                s: 11px,
+                h: 120%,
+                w: 'S'
+        ),
+);
+
+@each $type, $value in $types {
+  .#{$type} {
+    @include text-typo($value...)
+  }
+}

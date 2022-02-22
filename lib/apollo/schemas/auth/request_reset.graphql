@@ -1,0 +1,13 @@
+mutation REQUEST_RESET($email: String!) {
+    passwordResetRequest(
+        input:{
+            email: $email
+        }
+    ) {
+        value
+        errors {
+            code
+            message
+        }
+    }
+}

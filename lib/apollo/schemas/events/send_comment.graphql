@@ -1,0 +1,19 @@
+mutation SEND_COMMENT (
+    $message: String!,
+    $id: Uuid!,
+    $requestId: Uuid!
+) {
+    editRequestByOrganizer(
+        input: {
+            eventId: $id
+            requestId: $requestId
+            comment: $message
+        }
+    ) {
+        value
+        errors {
+            code
+            message
+        }
+    }
+}

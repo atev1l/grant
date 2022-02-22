@@ -1,0 +1,14 @@
+mutation CREATE_QR (
+    $requestId: Uuid!
+){
+    createQRToken(input: {requestId: $requestId}) {
+        value {
+            token
+            eventId
+        }
+        errors {
+            code
+            message
+        }
+    }
+}

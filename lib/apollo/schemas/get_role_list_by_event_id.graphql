@@ -1,0 +1,35 @@
+query GET_ROLE_LIST_BY_EVENT_ID (
+    $eventId: Uuid!
+){
+    usersInfo(
+        where:{
+            roles: {
+                some:{
+                    and:[{
+                        role: {
+                            eq: Organizer
+                        }
+                    }
+                        {
+                            eventId: {
+                                eq: $eventId
+                            }
+                        }]
+                }
+            }
+        }
+    ){
+        edges{
+            node{
+                id
+                email
+                profile{
+                    firstName
+                    lastName
+                    patronymic
+                }
+            }
+        }
+    }
+
+}

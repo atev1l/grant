@@ -1,0 +1,29 @@
+mutation UPDATE_USER(,
+    $city: String,
+    $firstName: String!,
+    $lastName: String!,
+    $organization: String,
+    $patronymic: String,
+    $phone: String,
+    $country: String!
+    $memberType: MemberType!
+    $memberTypeCustom: String
+) {
+    editProfile(
+        input: {
+            city: $city
+            firstName: $firstName
+            lastName: $lastName
+            organization: $organization
+            country: $country
+            patronymic: $patronymic
+            phone: $phone
+            memberType: $memberType
+            memberTypeCustom: $memberTypeCustom
+        }
+    ) {
+        value {
+            firstName
+        }
+    }
+}

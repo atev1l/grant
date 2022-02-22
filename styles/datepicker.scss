@@ -1,0 +1,13 @@
+.DateRangePicker,
+.DateRangePicker > *,
+.DateRangePicker > * > * {
+  //display: flex;
+  width: 100%;
+  margin: 0;
+}
+.DateInput {
+  width: 45%;
+}
+.DateRangePickerInput_arrow{
+  width: 10%;
+}

@@ -1,0 +1,14 @@
+mutation UPDATE_PASS ($pass: String!, $token: String!) {
+    resetPassword(
+        input: {
+            newPassword: $pass
+            token: $token
+        }
+    ) {
+        value
+        errors {
+            code
+            message
+        }
+    }
+}

@@ -1,0 +1,14 @@
+mutation AUTH ($email: String!, $pass: String!) {
+    authorization(
+        input: {
+            email: $email
+            password: $pass
+        }
+    ) {
+        value
+        errors {
+            message
+            code
+        }
+    }
+}

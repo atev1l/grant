@@ -1,0 +1,15 @@
+query GET_MY_EVENTS {
+    events(
+        where: {
+            requestId: {
+               eq: "0173d0e4-81fd-4b0d-80c2-0071b6984af9"
+            }
+        }
+    ){
+        edges {
+            node {
+                title
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+query search_by_users (
+    $cursor: String
+    $search: String! = ""
+){
+    searchUserInfos(
+        first: 20
+        after: $cursor
+        searchData: $search
+    )
+    {
+        edges {
+            node {
+                id
+                email
+                profile{
+                    firstName
+                    lastName
+                    patronymic
+                    city
+                    organization
+                    phone
+                }
+            }
+        }
+        pageInfo {
+            endCursor
+            hasNextPage
+        }
+    }
+}

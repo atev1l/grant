@@ -1,0 +1,35 @@
+mutation CREATE_EVENT (
+    $title: String!
+    $description: String
+    $status: EventStatus
+    $pincode: Int!
+    $organizers: [Uuid!]!
+    $contactPerson: Uuid!
+    $newOrganizers: [RequestUserRegistrationInput!]
+    $documents: [Uuid!]!
+    $coverImageId: Uuid
+    $scheduledTo: DateTime
+    $estimateTo: DateTime
+){
+    createEvent (
+        input: {
+            title: $title
+            description: $description
+            status: $status
+            organizers: $organizers
+            contactPerson: $contactPerson
+            pincode: $pincode
+            documents: $documents
+            newOrganizers: $newOrganizers
+            coverImageId: $coverImageId
+            scheduledTo: $scheduledTo
+            estimateTo: $estimateTo
+        }
+    ) {
+        value
+        errors {
+            code
+            message
+        }
+    }
+}

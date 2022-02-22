@@ -1,0 +1,10 @@
+public/sw.js
+public/workbox-*.js
+.github
+.git
+.gitignore
+.next
+.idea
+node_modules
+Dockerfile
+docker-compose.yml

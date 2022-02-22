@@ -1,0 +1,94 @@
+// theme colors
+
+$input-focus-box-shadow: none;
+$form-select-indicator: none;
+$btn-active-box-shadow: none;
+$btn-box-shadow: none;
+$btn-focus-box-shadow: none;
+
+$custom-colors: (
+        orng: #F57301,
+        wht: white,
+        blck: #212221,
+        lght: #F6F6F6,
+        gry: #B4B6B8,
+        lgr:#DADCDE,
+        rd: #FA9FA8,
+        mbck: #00000099,
+        grn: #27AE60,
+        bg: #F6F6F6,
+        drd: #EB5757,
+);
+
+
+// breakpoints
+
+$custom-breakpoints: (
+);
+
+
+// font
+
+@font-face {
+  font-family: 'PXR';
+  src: url("/font/ProximaNova-Regular.woff") format('woff');
+}
+
+@font-face {
+  font-family: 'PXS';
+  src: url("/font/ProximaNova-Semibold.woff") format('woff');
+}
+
+@font-face {
+  font-family: 'PXB';
+  src: url("/font/ProximaNova-Bold.woff") format('woff');
+}
+
+// shadows
+
+$shadows: (
+        down: (0px 4px 6px -4px rgba(24, 39, 75, 0.1), 0px 8px 8px -4px rgba(24, 39, 75, 0.06)),
+        lg_down: (0px 0px 4px rgba(0, 0, 0, 0.08), 0px 8px 8px rgba(0, 0, 0, 0.16)),
+        up: (0px -1px 1px rgba(20, 20, 20, 0.02), 0px -2px 8px rgba(20, 20, 20, 0.04)),
+);
+
+
+@each $type, $value in $shadows {
+  .sh-#{$type} {
+    box-sizing: border-box;
+    box-shadow: $value;
+  }
+}
+
+
+@for $val from 1 through 4 {
+  .brdr-#{$val} {
+    border-radius: $val * 3px !important;
+  }
+}
+
+@for $val from 1 through 4 {
+  .rotate-#{$val} {
+    transform: rotate($val * 45deg);
+  }
+}
+
+.gradient {
+  background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.0001) 0%,
+          rgba(255, 255, 255, 0.0156863) 9.22%,
+          rgba(255, 255, 255, 0.054902) 18.76%,
+          rgba(255, 255, 255, 0.117647) 28.48%,
+          rgba(255, 255, 255, 0.2) 38.19%,
+          rgba(255, 255, 255, 0.290196) 47.75%,
+          rgba(255, 255, 255, 0.392157) 56.99%,
+          rgba(255, 255, 255, 0.501961) 65.75%,
+          rgba(255, 255, 255, 0.607843) 73.87%,
+          rgba(255, 255, 255, 0.709804) 81.18%,
+          rgba(255, 255, 255, 0.8) 87.52%,
+          rgba(255, 255, 255, 0.882353) 92.74%,
+          rgba(255, 255, 255, 0.945098) 96.66%,
+          rgba(255, 255, 255, 0.984314) 99.14%,
+          #FFFFFF 100%);
+
+}

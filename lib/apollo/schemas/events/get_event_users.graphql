@@ -1,0 +1,63 @@
+query GET_EVENT_USERS (
+    $status: [RequestStatus!]
+    $eventId: Uuid!
+    $cursor: String
+    $search: String
+    $roleSelected: NullableOfRequestTypeOperationFilterInput
+) {
+    requests(
+        after: $cursor
+        first: 9
+        eventId: $eventId
+        where: {
+            and: [
+                {
+                    type: $roleSelected
+                }
+                {
+                    status: {
+                        in: $status
+                    }
+                },
+                {
+                    or: [
+                        {
+                            profileLight: {firstName: {contains: $search}}
+                        },
+                        {
+                            profileLight: {lastName: {contains: $search}}
+                        },
+                        {
+                            profileLight: {patronymic: {contains: $search}}
+                        },
+                    ]
+                }
+            ]
+        }
+    ) {
+        edges {
+            node {
+                id
+                eventId
+                talkTitle
+                status
+                type
+                comment
+                profileLight {
+                    city
+                    firstName
+                    lastName
+                    organization
+                    patronymic
+                    phone
+                }
+                documents{
+                    name
+                    relativePath
+                    sizeString
+                    extension
+                }
+            }
+        }
+    }
+}

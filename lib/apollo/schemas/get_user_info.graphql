@@ -1,0 +1,23 @@
+query GET_USER_INFO{
+    infoByCurrentAccount{
+        value {
+            id
+            email
+            profile{
+                city
+                firstName
+                lastName
+                organization
+                country
+                patronymic
+                phone
+                memberType
+            }
+            roles{
+                eventId
+                role
+            }
+
+        }
+    }
+}

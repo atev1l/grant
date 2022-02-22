@@ -1,0 +1,18 @@
+query GET_CURRENT_ROLES {
+    infoByCurrentAccount{
+        value {
+            profile {
+                firstName
+                lastName
+            }
+            roles{
+                eventId
+                role
+            }
+        }
+        errors{
+            code
+            message
+        }
+    }
+}

@@ -1,0 +1,23 @@
+query GET_SELF {
+    infoByCurrentAccount{
+        value{
+            email
+            id
+            profile{
+                city
+                firstName
+                lastName
+                organization
+                country
+                patronymic
+                phone
+                memberType
+                memberTypeCustom
+            }
+            roles{
+                eventId
+                role
+            }
+        }
+    }
+}

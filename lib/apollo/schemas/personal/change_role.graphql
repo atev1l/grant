@@ -1,0 +1,24 @@
+mutation CHANGE_ROLE (
+    $type: RequestType
+    $comment: String
+    $id: Uuid!
+    $eventId: Uuid!
+    $status: RequestStatus
+){
+    editRequestByOrganizer(
+        input: {
+            status: $status
+            requestId: $id
+            eventId: $eventId
+            type: $type,
+            comment: $comment
+        }
+    )
+    {
+        value
+        errors {
+            code
+            message
+        }
+    }
+}

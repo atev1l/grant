@@ -1,0 +1,19 @@
+@import "../../styles/vars";
+@import "../Typography/styles.module";
+
+.input {
+  outline: none;
+  border: none;
+  background-color: #00000000;
+  &:focus{
+    caret-color: map-get($custom-colors, orng);
+  }
+}
+
+.container {
+  > * {
+    &::-webkit-calendar-picker-indicator {
+      display: none;
+    }
+  }
+}

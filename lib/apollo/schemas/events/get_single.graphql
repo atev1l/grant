@@ -1,0 +1,37 @@
+query GET_SINGLE_EVENT ($id: Uuid!) {
+    events (
+        where: {
+            id: {
+                eq: $id
+            }
+        }
+    ) {
+        edges {
+            node{
+                documents{
+                    id
+                    name
+                    relativePath
+                    sizeString
+                    extension
+                }
+                coverImage
+                contactPerson {
+                    firstName
+                    lastName
+                    organization
+                    patronymic
+                    phone
+                }
+                description
+                estimateTo
+                requestId
+                requestStatus
+                scheduledTo
+                status
+                title
+                updatedAt
+            }
+        }
+    }
+}

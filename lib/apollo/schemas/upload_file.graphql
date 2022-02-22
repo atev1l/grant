@@ -1,0 +1,14 @@
+mutation UPLOAD_FILE($file: Upload!) {
+    uploadFile(input: {
+        file: $file
+    }) {
+        value {
+            id
+            name
+            relativePath
+        }
+        errors {
+            message
+        }
+    }
+}

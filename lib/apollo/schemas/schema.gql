@@ -1,0 +1,774 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+"The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`."
+directive @defer(
+    "Deferred when true."
+    if: Boolean,
+    "If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to."
+    label: String
+) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"The `@stream` directive may be provided for a field of `List` type so that the backend can leverage technology such as asynchronous iterators to provide a partial list in the initial response, and additional list items in subsequent responses. `@include` and `@skip` take precedence over `@stream`."
+directive @stream(
+    "Streamed when true."
+    if: Boolean!,
+    "The initial elements that shall be send down to the consumer."
+    initialCount: Int!,
+    "If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to."
+    label: String
+) on FIELD
+
+directive @authorize(
+    "Defines when when the resolver shall be executed.By default the resolver is executed after the policy has determined that the current user is allowed to access the field."
+    apply: ApplyPolicy! = BEFORE_RESOLVER,
+    "The name of the authorization policy that determines access to the annotated resource."
+    policy: String,
+    "Roles that are allowed to access the annotated resource."
+    roles: [String!]
+) on SCHEMA | OBJECT | FIELD_DEFINITION
+
+directive @permission(
+    "The name of the parameter that contains the eventId."
+    eventFieldName: String,
+    "Roles that are allowed to access the annotated resource."
+    role: Role! = None
+) on SCHEMA | OBJECT | FIELD_DEFINITION
+
+type AccountLight {
+    createdAt: DateTime
+    email: String
+    id: Uuid!
+    profile: ProfileLight
+    roles: [RoleModel]
+    updatedAt: DateTime
+}
+
+"A connection to a list of items."
+type AccountLightConnection {
+    "A list of edges."
+    edges: [AccountLightEdge!]
+    "A flattened list of the nodes."
+    nodes: [AccountLight!]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type AccountLightEdge {
+    "A cursor for use in pagination."
+    cursor: String!
+    "The item at the end of the edge."
+    node: AccountLight!
+}
+
+type EventLightWithRequest {
+    contactPerson: ProfileLight
+    coverImage: String
+    createdAt: DateTime
+    description: String
+    documents: [FileLight!]
+    estimateTo: DateTime
+    id: Uuid
+    requestId: Uuid
+    requestStatus: RequestStatus
+    scheduledTo: DateTime
+    status: EventStatus
+    title: String
+    updatedAt: DateTime
+}
+
+"A connection to a list of items."
+type EventLightWithRequestConnection {
+    "A list of edges."
+    edges: [EventLightWithRequestEdge!]
+    "A flattened list of the nodes."
+    nodes: [EventLightWithRequest!]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type EventLightWithRequestEdge {
+    "A cursor for use in pagination."
+    cursor: String!
+    "The item at the end of the edge."
+    node: EventLightWithRequest!
+}
+
+type FileLight {
+    extension: String
+    id: Uuid
+    name: String
+    relativePath: String
+    sizeString: String
+}
+
+type Mutation {
+    authorization(input: AuthorizationInput!): PayloadOfString!
+    confirmAccount(input: ConfirmAccountInput!): PayloadOfBoolean!
+    confirmAccountRequest: PayloadOfBoolean!
+    createAccount(input: RegistrationInput!): PayloadOfString!
+    createEvent(input: CreateEventInput): PayloadOfNullableOfGuid
+    createQRToken(input: CreateQRTokenInput!): PayloadOfQRTokenModel!
+    createRequest(input: CreateRequestInput!): PayloadOfBoolean!
+    deleteFile(input: DeleteFileInput!): PayloadOfBoolean!
+    editProfile(input: EditProfileInput!): PayloadOfProfileLight!
+    editRequest(input: EditRequestInput!): PayloadOfBoolean!
+    editRequestByOrganizer(input: EditRequestByOrganizerInput!): PayloadOfBoolean!
+    passwordResetRequest(input: PasswordResetRequestInput!): PayloadOfBoolean!
+    requestMarkArrived(input: RequestMarkArrivedInput!): PayloadOfBoolean!
+    resetPassword(input: ResetPasswordInput!): PayloadOfBoolean!
+    updateEvent(input: UpdateEventInput): PayloadOfBoolean
+    uploadFile(input: UploadFileInput!): PayloadOfFileLight!
+}
+
+type Notification {
+    body: String
+    date: DateTime!
+    header: String
+    id: Uuid!
+    link: String
+    status: NotificationStatus
+    type: NotificationType
+    userId: Uuid
+}
+
+"A connection to a list of items."
+type NotificationConnection {
+    "A list of edges."
+    edges: [NotificationEdge!]
+    "A flattened list of the nodes."
+    nodes: [Notification]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type NotificationEdge {
+    "A cursor for use in pagination."
+    cursor: String!
+    "The item at the end of the edge."
+    node: Notification
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "Indicates whether more edges exist following the set defined by the clients arguments."
+    hasNextPage: Boolean!
+    "Indicates whether more edges exist prior the set defined by the clients arguments."
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
+type PayloadOfAccountLight {
+    errors: [UserError!]
+    value: AccountLight
+}
+
+type PayloadOfBoolean {
+    errors: [UserError!]
+    value: Boolean!
+}
+
+type PayloadOfFileLight {
+    errors: [UserError!]
+    value: FileLight
+}
+
+type PayloadOfNullableOfGuid {
+    errors: [UserError!]
+    value: Uuid
+}
+
+type PayloadOfProfileLight {
+    errors: [UserError!]
+    value: ProfileLight
+}
+
+type PayloadOfQRTokenModel {
+    errors: [UserError!]
+    value: QRTokenModel
+}
+
+type PayloadOfString {
+    errors: [UserError!]
+    value: String
+}
+
+type ProfileLight {
+    city: String
+    country: String
+    firstName: String!
+    lastName: String!
+    memberType: MemberType!
+    memberTypeCustom: String
+    organization: String
+    patronymic: String
+    phone: String
+    userId: Uuid
+}
+
+type QRTokenModel {
+    eventId: Uuid!
+    token: String
+}
+
+type Query {
+    events(after: String, before: String, first: Int, isMy: Boolean! = false, last: Int, order: [EventLightWithRequestSortInput!], where: EventLightWithRequestFilterInput): EventLightWithRequestConnection
+    infoByCurrentAccount: PayloadOfAccountLight!
+    myRequests(after: String, before: String, first: Int, last: Int, order: [RequestLightSortInput!], where: RequestLightFilterInput): RequestLightConnection
+    notification(after: String, before: String, first: Int, last: Int, order: [NotificationSortInput!], where: NotificationFilterInput): NotificationConnection
+    notificationAvailiable: Boolean!
+    requests(after: String, before: String, eventId: Uuid!, first: Int, last: Int, order: [RequestLightSortInput!], searchByDocs: String, where: RequestLightFilterInput): RequestLightConnection
+    searchUserInfos(after: String, before: String, count: Int! = 10, first: Int, last: Int, order: [AccountLightSortInput!], searchData: String!, where: AccountLightFilterInput): AccountLightConnection
+    statistics(eventId: Uuid!, statisticMode: [StatisticsMode!]!): String!
+    usersInfo(after: String, before: String, first: Int, last: Int, order: [AccountLightSortInput!], where: AccountLightFilterInput): AccountLightConnection
+}
+
+type RequestLight {
+    coAuthors: [Uuid!]
+    comment: String
+    createdAt: DateTime
+    documents: [FileLight]
+    eventId: Uuid
+    id: Uuid!
+    profileLight: ProfileLight
+    status: RequestStatus
+    talkTitle: String
+    type: RequestType
+    updatedAt: DateTime
+    userEmail: String
+    userId: Uuid
+}
+
+"A connection to a list of items."
+type RequestLightConnection {
+    "A list of edges."
+    edges: [RequestLightEdge!]
+    "A flattened list of the nodes."
+    nodes: [RequestLight!]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type RequestLightEdge {
+    "A cursor for use in pagination."
+    cursor: String!
+    "The item at the end of the edge."
+    node: RequestLight!
+}
+
+type RoleModel {
+    eventId: Uuid
+    id: Uuid!
+    role: Role!
+    userId: Uuid
+}
+
+type UserError {
+    code: Int!
+    message: String
+}
+
+enum ApplyPolicy {
+    AFTER_RESOLVER
+    BEFORE_RESOLVER
+}
+
+enum EventStatus {
+    COMPLETED
+    ONGOING
+    OPENING
+    RECEPTION
+}
+
+enum MemberType {
+    OTHER
+    STUDENT
+    TEACHER
+}
+
+enum NotificationStatus {
+    LOOK
+    UNLOOK
+}
+
+enum NotificationType {
+    YOUR
+}
+
+enum RequestStatus {
+    ARRIVED
+    AWAIT_VERIFY
+    COMPLETED
+    DENIED
+    NEED_CORRECTION
+    PAY_AWAIT
+}
+
+enum RequestType {
+    NONE
+    PARTICIPANT
+    SPEAKER
+}
+
+enum Role {
+    Admin
+    None
+    Organizer
+}
+
+enum SortEnumType {
+    ASC
+    DESC
+}
+
+enum StatisticsMode {
+    CONFERENCES_WITH_INTERNATIONAL_PARTICIPATION
+    NONE
+    NUMBER_OF_PARTICIPANTS
+    PARTICIPANTS_FROM_PSU
+}
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload
+
+scalar Uuid
+
+input AccountLightFilterInput {
+    and: [AccountLightFilterInput!]
+    createdAt: ComparableNullableOfDateTimeOperationFilterInput
+    email: StringOperationFilterInput
+    id: ComparableGuidOperationFilterInput
+    or: [AccountLightFilterInput!]
+    profile: ProfileLightFilterInput
+    roles: ListFilterInputTypeOfRoleModelFilterInput
+    updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+}
+
+input AccountLightSortInput {
+    createdAt: SortEnumType
+    email: SortEnumType
+    id: SortEnumType
+    profile: ProfileLightSortInput
+    updatedAt: SortEnumType
+}
+
+input AuthorizationInput {
+    email: String!
+    password: String!
+}
+
+input ComparableDateTimeOperationFilterInput {
+    eq: DateTime
+    gt: DateTime
+    gte: DateTime
+    in: [DateTime!]
+    lt: DateTime
+    lte: DateTime
+    neq: DateTime
+    ngt: DateTime
+    ngte: DateTime
+    nin: [DateTime!]
+    nlt: DateTime
+    nlte: DateTime
+}
+
+input ComparableGuidOperationFilterInput {
+    eq: Uuid
+    gt: Uuid
+    gte: Uuid
+    in: [Uuid!]
+    lt: Uuid
+    lte: Uuid
+    neq: Uuid
+    ngt: Uuid
+    ngte: Uuid
+    nin: [Uuid!]
+    nlt: Uuid
+    nlte: Uuid
+}
+
+input ComparableNullableOfDateTimeOperationFilterInput {
+    eq: DateTime
+    gt: DateTime
+    gte: DateTime
+    in: [DateTime]
+    lt: DateTime
+    lte: DateTime
+    neq: DateTime
+    ngt: DateTime
+    ngte: DateTime
+    nin: [DateTime]
+    nlt: DateTime
+    nlte: DateTime
+}
+
+input ComparableNullableOfGuidOperationFilterInput {
+    eq: Uuid
+    gt: Uuid
+    gte: Uuid
+    in: [Uuid]
+    lt: Uuid
+    lte: Uuid
+    neq: Uuid
+    ngt: Uuid
+    ngte: Uuid
+    nin: [Uuid]
+    nlt: Uuid
+    nlte: Uuid
+}
+
+input ConfirmAccountInput {
+    token: String!
+}
+
+input CreateEventInput {
+    contactPerson: Uuid!
+    coverImageId: Uuid
+    description: String
+    documents: [Uuid!]!
+    estimateTo: DateTime
+    newOrganizers: [RequestUserRegistrationInput!]
+    organizers: [Uuid!]!
+    pincode: Int!
+    scheduledTo: DateTime
+    status: EventStatus
+    title: String!
+}
+
+input CreateQRTokenInput {
+    requestId: Uuid!
+}
+
+input CreateRequestInput {
+    coAuthors: [Uuid!]!
+    documents: [Uuid!]!
+    eventId: Uuid!
+    talkTitle: String
+    type: RequestType!
+    user: RequestUserRegistrationInput
+}
+
+input DeleteFileInput {
+    fileId: Uuid!
+}
+
+input EditProfileInput {
+    city: String
+    country: String
+    firstName: String
+    lastName: String
+    memberType: MemberType
+    memberTypeCustom: String
+    organization: String
+    patronymic: String
+    phone: String
+}
+
+input EditRequestByOrganizerInput {
+    comment: String
+    eventId: Uuid!
+    requestId: Uuid!
+    status: RequestStatus
+    type: RequestType
+}
+
+input EditRequestInput {
+    coAuthors: [Uuid!]!
+    documents: [Uuid!]!
+    requestId: Uuid!
+    talkTitle: String
+    type: RequestType
+}
+
+input EventLightWithRequestFilterInput {
+    and: [EventLightWithRequestFilterInput!]
+    contactPerson: ProfileLightFilterInput
+    coverImage: StringOperationFilterInput
+    createdAt: ComparableNullableOfDateTimeOperationFilterInput
+    description: StringOperationFilterInput
+    documents: ListFilterInputTypeOfFileLightFilterInput
+    estimateTo: ComparableNullableOfDateTimeOperationFilterInput
+    id: ComparableNullableOfGuidOperationFilterInput
+    or: [EventLightWithRequestFilterInput!]
+    requestId: ComparableNullableOfGuidOperationFilterInput
+    requestStatus: NullableOfRequestStatusOperationFilterInput
+    scheduledTo: ComparableNullableOfDateTimeOperationFilterInput
+    status: NullableOfEventStatusOperationFilterInput
+    title: StringOperationFilterInput
+    updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+}
+
+input EventLightWithRequestSortInput {
+    contactPerson: ProfileLightSortInput
+    coverImage: SortEnumType
+    createdAt: SortEnumType
+    description: SortEnumType
+    estimateTo: SortEnumType
+    id: SortEnumType
+    requestId: SortEnumType
+    requestStatus: SortEnumType
+    scheduledTo: SortEnumType
+    status: SortEnumType
+    title: SortEnumType
+    updatedAt: SortEnumType
+}
+
+input FileLightFilterInput {
+    and: [FileLightFilterInput!]
+    extension: StringOperationFilterInput
+    id: ComparableNullableOfGuidOperationFilterInput
+    name: StringOperationFilterInput
+    or: [FileLightFilterInput!]
+    relativePath: StringOperationFilterInput
+    sizeString: StringOperationFilterInput
+}
+
+input ListComparableGuidOperationFilterInput {
+    all: ComparableGuidOperationFilterInput
+    any: Boolean
+    none: ComparableGuidOperationFilterInput
+    some: ComparableGuidOperationFilterInput
+}
+
+input ListFilterInputTypeOfFileLightFilterInput {
+    all: FileLightFilterInput
+    any: Boolean
+    none: FileLightFilterInput
+    some: FileLightFilterInput
+}
+
+input ListFilterInputTypeOfRoleModelFilterInput {
+    all: RoleModelFilterInput
+    any: Boolean
+    none: RoleModelFilterInput
+    some: RoleModelFilterInput
+}
+
+input MemberTypeOperationFilterInput {
+    eq: MemberType
+    in: [MemberType!]
+    neq: MemberType
+    nin: [MemberType!]
+}
+
+input NotificationFilterInput {
+    and: [NotificationFilterInput!]
+    body: StringOperationFilterInput
+    date: ComparableDateTimeOperationFilterInput
+    header: StringOperationFilterInput
+    id: ComparableGuidOperationFilterInput
+    link: StringOperationFilterInput
+    or: [NotificationFilterInput!]
+    status: NullableOfNotificationStatusOperationFilterInput
+    type: NullableOfNotificationTypeOperationFilterInput
+    userId: ComparableNullableOfGuidOperationFilterInput
+}
+
+input NotificationSortInput {
+    body: SortEnumType
+    date: SortEnumType
+    header: SortEnumType
+    id: SortEnumType
+    link: SortEnumType
+    status: SortEnumType
+    type: SortEnumType
+    userId: SortEnumType
+}
+
+input NullableOfEventStatusOperationFilterInput {
+    eq: EventStatus
+    in: [EventStatus]
+    neq: EventStatus
+    nin: [EventStatus]
+}
+
+input NullableOfNotificationStatusOperationFilterInput {
+    eq: NotificationStatus
+    in: [NotificationStatus]
+    neq: NotificationStatus
+    nin: [NotificationStatus]
+}
+
+input NullableOfNotificationTypeOperationFilterInput {
+    eq: NotificationType
+    in: [NotificationType]
+    neq: NotificationType
+    nin: [NotificationType]
+}
+
+input NullableOfRequestStatusOperationFilterInput {
+    eq: RequestStatus
+    in: [RequestStatus]
+    neq: RequestStatus
+    nin: [RequestStatus]
+}
+
+input NullableOfRequestTypeOperationFilterInput {
+    eq: RequestType
+    in: [RequestType]
+    neq: RequestType
+    nin: [RequestType]
+}
+
+input PasswordResetRequestInput {
+    email: String!
+}
+
+input ProfileLightFilterInput {
+    and: [ProfileLightFilterInput!]
+    city: StringOperationFilterInput
+    country: StringOperationFilterInput
+    firstName: StringOperationFilterInput
+    lastName: StringOperationFilterInput
+    memberType: MemberTypeOperationFilterInput
+    memberTypeCustom: StringOperationFilterInput
+    or: [ProfileLightFilterInput!]
+    organization: StringOperationFilterInput
+    patronymic: StringOperationFilterInput
+    phone: StringOperationFilterInput
+    userId: ComparableNullableOfGuidOperationFilterInput
+}
+
+input ProfileLightInput {
+    city: String
+    country: String
+    firstName: String!
+    lastName: String!
+    memberType: MemberType!
+    memberTypeCustom: String
+    organization: String
+    patronymic: String
+    phone: String
+    userId: Uuid
+}
+
+input ProfileLightSortInput {
+    city: SortEnumType
+    country: SortEnumType
+    firstName: SortEnumType
+    lastName: SortEnumType
+    memberType: SortEnumType
+    memberTypeCustom: SortEnumType
+    organization: SortEnumType
+    patronymic: SortEnumType
+    phone: SortEnumType
+    userId: SortEnumType
+}
+
+input RegistrationInput {
+    email: String!
+    password: String!
+    profileLight: ProfileLightInput
+}
+
+input RequestLightFilterInput {
+    and: [RequestLightFilterInput!]
+    coAuthors: ListComparableGuidOperationFilterInput
+    comment: StringOperationFilterInput
+    createdAt: ComparableNullableOfDateTimeOperationFilterInput
+    documents: ListFilterInputTypeOfFileLightFilterInput
+    eventId: ComparableNullableOfGuidOperationFilterInput
+    id: ComparableGuidOperationFilterInput
+    or: [RequestLightFilterInput!]
+    profileLight: ProfileLightFilterInput
+    status: NullableOfRequestStatusOperationFilterInput
+    talkTitle: StringOperationFilterInput
+    type: NullableOfRequestTypeOperationFilterInput
+    updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+    userEmail: StringOperationFilterInput
+    userId: ComparableNullableOfGuidOperationFilterInput
+}
+
+input RequestLightSortInput {
+    comment: SortEnumType
+    createdAt: SortEnumType
+    eventId: SortEnumType
+    id: SortEnumType
+    profileLight: ProfileLightSortInput
+    status: SortEnumType
+    talkTitle: SortEnumType
+    type: SortEnumType
+    updatedAt: SortEnumType
+    userEmail: SortEnumType
+    userId: SortEnumType
+}
+
+input RequestMarkArrivedInput {
+    eventId: Uuid!
+    pincode: String!
+    token: String!
+}
+
+input RequestUserRegistrationInput {
+    email: String!
+    profileLight: ProfileLightInput
+}
+
+input ResetPasswordInput {
+    newPassword: String!
+    token: String!
+}
+
+input RoleModelFilterInput {
+    and: [RoleModelFilterInput!]
+    eventId: ComparableNullableOfGuidOperationFilterInput
+    id: ComparableGuidOperationFilterInput
+    or: [RoleModelFilterInput!]
+    role: RoleOperationFilterInput
+    userId: ComparableNullableOfGuidOperationFilterInput
+}
+
+input RoleOperationFilterInput {
+    eq: Role
+    in: [Role!]
+    neq: Role
+    nin: [Role!]
+}
+
+input StringOperationFilterInput {
+    and: [StringOperationFilterInput!]
+    contains: String
+    endsWith: String
+    eq: String
+    in: [String]
+    ncontains: String
+    nendsWith: String
+    neq: String
+    nin: [String]
+    nstartsWith: String
+    or: [StringOperationFilterInput!]
+    startsWith: String
+}
+
+input UpdateEventInput {
+    contactPerson: Uuid
+    coverImageId: Uuid
+    description: String
+    documents: [Uuid!]!
+    estimateTo: DateTime
+    eventId: Uuid!
+    newOrganizers: [RequestUserRegistrationInput!]!
+    organizers: [Uuid!]!
+    pincode: Int
+    scheduledTo: DateTime
+    status: EventStatus
+    title: String
+}
+
+input UploadFileInput {
+    file: Upload
+}

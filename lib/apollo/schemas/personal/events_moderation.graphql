@@ -1,0 +1,45 @@
+query EVENTS_MODERATION(
+    $status: NullableOfEventStatusOperationFilterInput
+    $event: ComparableNullableOfGuidOperationFilterInput
+    $sort: SortEnumType = ASC
+    $lte: DateTime
+    $gte: DateTime
+){
+    events(
+        order: [{
+            scheduledTo: $sort
+        }]
+        where: {
+            and: [
+                {
+                    id: $event
+                },
+                {
+                    status: $status
+                },
+                {
+                    scheduledTo: {
+                        gte: $gte
+                        lte: $lte
+                    }
+                }
+            ]
+        }
+    ) {
+        edges {
+            node {
+                id
+                title
+                description
+                coverImage
+                scheduledTo
+                estimateTo
+            }
+        }
+        pageInfo{
+            hasNextPage
+            endCursor
+            startCursor
+        }
+    }
+}

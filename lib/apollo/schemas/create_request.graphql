@@ -1,0 +1,48 @@
+mutation CREATE_REQUEST (
+    $eventId: Uuid!
+    $type: RequestType!
+    $talkTitle: String
+    $email: String!
+    $userId: Uuid!
+    $firstName: String!
+    $lastName: String!
+    $patronymic: String
+    $phone: String
+    $country: String
+    $city: String
+    $organization: String
+    $documents: [Uuid!]!
+    $memberType: MemberType!
+    $coAuthors: [Uuid!]!
+){
+    createRequest (
+        input: {
+            eventId: $eventId
+            type: $type
+            talkTitle: $talkTitle
+            documents: $documents
+            coAuthors: $coAuthors
+            user: {
+                email: $email
+                profileLight: {
+                    userId: $userId
+                    firstName: $firstName
+                    lastName: $lastName
+                    patronymic: $patronymic
+                    phone: $phone
+                    city: $city
+                    country: $country
+                    organization: $organization,
+                    memberType: $memberType
+                }
+            }
+        }
+    ) {
+        value
+        errors {
+            code
+            message
+        }
+    }
+}
+

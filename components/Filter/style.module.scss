@@ -1,0 +1,6 @@
+@import "styles/vars";
+
+.radioColors:checked{
+  border-color: map-get($custom-colors, "orng");
+  background-color: map-get($custom-colors, "orng");
+}

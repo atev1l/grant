@@ -1,0 +1,45 @@
+query SEARCH_BY_USERS_REQUEST_BY_EVENTID(
+    $eventId: Uuid!
+    $talkTitle: String
+){
+    requests(
+        eventId: $eventId
+        where:{
+            or:[{
+                talkTitle:{
+                    contains: $talkTitle
+                }
+            }{
+                profileLight:{
+                    firstName:{
+                        contains: $talkTitle
+                    }
+                }
+            }{
+                profileLight:{
+                    lastName:{
+                        contains: $talkTitle
+                    }
+                }
+            }
+            ]
+        }
+    ){
+        nodes{
+            id
+            talkTitle
+            profileLight{
+                firstName
+                lastName
+                organization
+            }
+            documents{
+                id
+                name
+                relativePath
+                extension
+                sizeString
+            }
+        }
+    }
+}
